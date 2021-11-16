@@ -1,12 +1,12 @@
 import './App.css';
 import Knob from './components/Knob';
-import Snare from './components/Snare'
+import Drums from './components/Drums'
 
 function App() {
   return (
     <>
     <Knob></Knob>
-    <Snare></Snare>
+    <Drums></Drums>
     </>
   );
 }
