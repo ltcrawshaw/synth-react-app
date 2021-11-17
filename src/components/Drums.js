@@ -80,6 +80,23 @@ export default function Drums() {
         kickOscillator.stop(audioContext.currentTime + 0.5)
     }
 
+    const HIHAT_URL = 'https://unpkg.com/browse/@teropa/drumkit@1.1.0/src/assets/hatClosed.mp3'
+
+    const handleClickHiHat = async () => {
+        try {
+            const response = await fetch(HIHAT_URL)
+            const soundBuffer = await response.arrayBuffer()
+            const hihatBuffer = await audioContext.decodeAudioData(soundBuffer)
+
+            const hiHatSource = audioContext.createBufferSource()
+            hiHatSource.buffer = hihatBuffer
+            hiHatSource.connect(primaryGainControl)
+            hiHatSource.start()
+            }
+        catch (err) {
+            console.log(err)
+        }
+    }
     
     return (
         <>
@@ -88,6 +105,9 @@ export default function Drums() {
         </button> 
         <button onClick={handleClickKick}>
              Kick
+        </button> 
+        <button onClick={handleClickHiHat}>
+             hihat
         </button>   
         </>
     )
